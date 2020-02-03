@@ -6,6 +6,8 @@ import psycopg2 as pg
 import pandas as pd
 import matplotlib.pyplot as plt
 
+'''Creating a connection to PostgreSQL database using psycopg2 library'''
+
 conn = pg.connect(user = 'doadmin', 
                       password = 'xpmt05ij9uf9rknn', 
                       host = 'tjori-bi-do-user-6486966-0.db.ondigitalocean.com', 
@@ -250,14 +252,14 @@ def plot_dashboard():
     
     colors = ["#E13F29", "#D69A80", "#D63B59", "#AE5552", "#CB5C3B", "#EB8076", "#96624E"]
   
-  
+    '''Creating the subplots'''
     
     fig, (ax1,ax2,ax3) = plt.subplots(1,3, figsize = (20,20))
     fig_2, ax4 = plt.subplots(1,1, figsize = (20,6))
     fig_3, ax5 = plt.subplots(1,1, figsize = (20,8))
     fig_4, ax6 = plt.subplots(1,1, figsize = (20,8))
     
-    
+    '''Plotting the data'''
     
     ax1.pie(df_0['net_revenue'], labels = df_0['category'], shadow = False, colors=colors, startangle=90, autopct='%1.1f%%')
     ax2.pie(df_1['pageviews'], labels = df_1['category'], shadow = False, colors=colors, startangle=90, autopct='%1.1f%%')
@@ -265,10 +267,13 @@ def plot_dashboard():
     ax4.bar(df_3['month'], df_3['quantity'], color='#D69A80')
     ax5.bar(df_3['month'], df_3['net_revenue'], color='#CB5C3B')
     ax6.bar(df_4['month'], df_4['pageviews'], color='#D63B59')
+
+    '''Setting the limits'''
     
     ax4.set_ylim(10000, 50000)
     ax5.set_ylim(8000000,15000000)
     
+    '''Setting the titles'''
     
     ax1.set_title('Category Wise Revenue Distribution', bbox={'facecolor':'0.8', 'pad':3})
     ax2.set_title('Category Wise Pageviews Distribution', bbox={'facecolor':'0.8', 'pad':3})
